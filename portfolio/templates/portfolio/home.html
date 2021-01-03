@@ -1,0 +1,39 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+  <style media="screen">
+    td {
+      padding: 1em;
+    }
+  </style>
+
+  {% load static %}
+
+  <dev class="container" style="text-align: center">
+    <img src="{% static 'portfolio/person_photo.jpg' %}" style="display: block; margin: auto; width: 30%;">
+    <br>
+    <h1 style="font-size: 4em">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
+  </dev>
+
+  <div class="container">
+    <hr>
+      {% for project in projects %}
+        <table>
+          <tr>
+            <h1>{{ project.title }}</h1>
+          </tr>
+          <tr>
+            <td><img src="{{ project.image.url }}"></td>
+            <td>
+              <p>{{ project.description }}</p>
+              {% if project.url %}
+                <a href="{{ project.url }}" >Link</a>
+              {% endif %}
+            </td>
+          </tr>
+        </table>
+      {% endfor %}
+  </div>
+
+{% endblock %}

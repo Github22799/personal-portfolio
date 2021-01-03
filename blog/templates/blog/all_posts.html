@@ -1,0 +1,28 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+
+  <style media="screen">
+    td {
+      padding: 1em;
+    }
+  </style>
+
+  <table>
+    {% for post in posts %}
+    <tr>
+      <td>
+        {% if post.image %}
+        <a href="{% url 'blog:post' post.id %}"><img src="{{ post.image.url }}" width="300px" height="200px">
+        {% endif %}
+      </td>
+      <td>
+        <a href="{% url 'blog:post' post.id %}"><h1>{{ post.title }}</h1></a>
+        <!--                  ^      ^      this post and the other one are not the same -->
+        <!-- the first is the view function, the other is a post object from the list -->
+        <h5>{{ post.date }}</h5>
+        <p>{{ post.text | truncatechars:200 }}</p>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
